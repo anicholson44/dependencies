@@ -1,0 +1,64 @@
+Run options: --seed 3134
+
+# Running:
+
+DEPEND   TELNET TCPIP NETCARD
+DEPEND TCPIP NETCARD
+DEPEND DNS TCPIP NETCARD
+DEPEND  BROWSER   TCPIP  HTML
+INSTALL NETCARD
+  Installing NETCARD.
+INSTALL TELNET
+  Installing TCPIP.
+  NETCARD is already installed.
+  Installing TELNET.
+INSTALL foo
+  Installing foo.
+REMOVE NETCARD
+  NETCARD is still needed.
+INSTALL BROWSER
+  TCPIP is already installed.
+  Installing HTML.
+  Installing BROWSER.
+INSTALL DNS
+  TCPIP is already installed.
+  NETCARD is already installed.
+  Installing DNS.
+LIST
+  NETCARD
+  TCPIP
+  TELNET
+  foo
+  HTML
+  BROWSER
+  DNS
+REMOVE TELNET
+  TCPIP is still needed.
+  NETCARD is still needed.
+  Removing TELNET.
+REMOVE NETCARD
+  NETCARD is still needed.
+REMOVE DNS
+  TCPIP is still needed.
+  NETCARD is still needed.
+  Removing DNS.
+REMOVE NETCARD
+  NETCARD is still needed.
+INSTALL NETCARD
+  NETCARD is already installed.
+REMOVE TCPIP
+  NETCARD is still needed.
+  TCPIP is still needed.
+REMOVE BROWSER
+  TCPIP is still needed.
+  HTML is still needed.
+  Removing BROWSER.
+REMOVE TCPIP
+  NETCARD is still needed.
+  TCPIP is still needed.
+LIST
+  NETCARD
+  TCPIP
+  foo
+  HTML
+END
