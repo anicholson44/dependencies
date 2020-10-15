@@ -4,7 +4,7 @@ class Graph
   attr_reader :logger
   
   def initialize(logger)
-    @components = Set.new
+    @components = ComponentSet.new
     @edges = {}
     @logger = logger
   end
@@ -42,6 +42,28 @@ class Graph
   def list
     @components.each do |component|
       logger.log(component, 1)
+    end
+  end
+
+  class ComponentSet
+    def initialize
+      @set = Set.new
+    end
+
+    def <<(component)
+      @set << component
+    end
+
+    def delete(component)
+      @set.delete(component)
+    end
+
+    def include?(component)
+      @set.include? component
+    end
+
+    def each(&block)
+      @set.each &block
     end
   end
 end
