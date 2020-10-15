@@ -4,8 +4,8 @@ class Graph
   attr_reader :logger
   
   def initialize(logger)
-    @components = ComponentSet.new
     @edges = {}
+    @components = ComponentSet.new(@edges)
     @logger = logger
   end
 
@@ -23,6 +23,7 @@ class Graph
     else
       logger.log("#{node} is already installed.", depth)
     end
+    @components.commit!
   end
 
   def remove(node, depth = 0)
@@ -37,6 +38,7 @@ class Graph
         logger.log("Removing #{node}.", depth)
       end
     end
+    @components.commit!
   end
 
   def list
@@ -46,24 +48,30 @@ class Graph
   end
 
   class ComponentSet
-    def initialize
+    def initialize(dependencies)
       @set = Set.new
+      @modified_set = Set.new
+      @dependencies = dependencies
     end
 
     def <<(component)
-      @set << component
+      @modified_set << component
     end
 
     def delete(component)
-      @set.delete(component)
+      @modified_set.delete(component)
     end
 
     def include?(component)
-      @set.include? component
+      @modified_set.include? component
     end
 
     def each(&block)
       @set.each &block
+    end
+
+    def commit!
+      @set = @modified_set
     end
   end
 end
