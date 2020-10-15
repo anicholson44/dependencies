@@ -71,7 +71,17 @@ class Graph
     end
 
     def commit!
-      @set = @modified_set
+      removed = @set - @modified_set
+      new_set = @set
+      if removed.any?
+        removed.reject! { |component| @dependencies.values.any? { |deps| deps.include?(component) } }
+        new_set = @set - removed
+      end
+      added = @modified_set - @set
+      if added.any?
+        new_set = new_set + added
+      end
+      @set = new_set
     end
   end
 end
