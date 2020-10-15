@@ -6,6 +6,8 @@ require './dependencies'
 class DependenciesTest < Minitest::Test
   def test_dependencies    
     input = Input.read
-    Dependencies.new(input).run
+    dependencies = Dependencies.new(input)
+    dependencies.run
+    byebug
   end
 end

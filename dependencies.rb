@@ -1,10 +1,13 @@
 require './graph'
+require './logger'
 require_relative './commands/factory'
 
 class Dependencies
+  attr_reader :logger 
   def initialize(input)
     @input = input
-    @graph = Graph.new
+    @logger = Logger.new(1)
+    @graph = Graph.new(@logger)
   end
 
   def run
